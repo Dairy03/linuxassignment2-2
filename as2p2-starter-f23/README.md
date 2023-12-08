@@ -22,5 +22,5 @@ The included backend server runs on port 8080, 127.0.0.1:8080
 - (you need to create the my-site and backend directory first.)
 
 Video link: https://youtu.be/arUlltOOFD0
-I don't know how to record more than 1 app at a time so I included a screenshot of digital ocean instead.
+- I don't know how to record more than 1 app at a time so I included a screenshot of digital ocean instead.
 ![Alt text](image.png)
