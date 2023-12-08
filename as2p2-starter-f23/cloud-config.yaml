@@ -1,0 +1,27 @@
+#cloud-config
+# You will need to edit this file before creating your new servers
+users:
+  - name: web
+    primary_group: web
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-ehgvuv 8byt654de76f7g879h887gtvrcr79f8giybvuo78gyvtfuctyiog8pyo email@example.com
+
+packages:
+  - ufw
+  - nginx
+
+runcmd:
+  - sudo apt update
+  - sudo apt install ufw
+  - sudo ufw default allow incoming
+  - sudo ufw default allow outgoing
+  - sudo ufw allow ssh
+  - sudo ufw allow http
+  - sudo ufw enable
+  - sed -i 's/^#\(Storage=auto\)/\1/' /etc/systemd/journald.conf
+  - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
+  - systemctl restart ssh
+  - systemctl restart systemd-journald
