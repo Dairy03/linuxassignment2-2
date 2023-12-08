@@ -7,21 +7,17 @@ users:
     shell: /bin/bash
     sudo: ['ALL=(ALL) NOPASSWD:ALL']
     ssh-authorized-keys:
-      - ssh-ehgvuv 8byt654de76f7g879h887gtvrcr79f8giybvuo78gyvtfuctyiog8pyo email@example.com
-
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFtY97a9G5msg0oMa/qUBP2gMNFcuexh7X1JRUgM9fin email@example.com
 packages:
+  - ripgrep
+  - rsync
   - ufw
   - nginx
 
 runcmd:
-  - sudo apt update
-  - sudo apt install ufw
-  - sudo ufw default allow incoming
-  - sudo ufw default allow outgoing
-  - sudo ufw allow ssh
-  - sudo ufw allow http
-  - sudo ufw enable
   - sed -i 's/^#\(Storage=auto\)/\1/' /etc/systemd/journald.conf
   - sed -i -e '/^PermitRootLogin/s/^.*$/PermitRootLogin no/' /etc/ssh/sshd_config
   - systemctl restart ssh
   - systemctl restart systemd-journald
+  - ufw allow ssh
+  - ufw allo http
